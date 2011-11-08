@@ -103,4 +103,4 @@
  53503534226472524250874054075591789781264330331690))
 (defun output-to-screen (x)
   (write-line x))
-(output-to-screen (format nil "~A" (euler)))
+(output-to-screen (subseq (format nil "~A" (euler)) 0 10))
