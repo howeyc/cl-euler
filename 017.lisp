@@ -1,6 +1,6 @@
 #!/usr/local/bin/sbcl --script
 (defun letters-in-number (num)
- (let ((retlength (length (remove #\- (remove #\ (format nil "~R" num))))))
+ (let ((retlength (length (remove #\- (remove #\Space (format nil "~R" num))))))
   (if (and 
        (> num 100)
        (not (zerop (mod num 100))))
