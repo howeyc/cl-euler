@@ -1,0 +1,16 @@
+#!/usr/local/bin/sbcl --script
+(defun letters-in-number (num)
+ (let ((retlength (length (remove #\- (remove #\ (format nil "~R" num))))))
+  (if (and 
+       (> num 100)
+       (not (zerop (mod num 100))))
+   (+ retlength 3)
+   retlength)))
+(defun euler ()
+ (let ((result 0))
+  (do ((i 1 (+ 1 i)))
+   ((> i 1000) result)
+   (setf result (+ result (letters-in-number i))))))
+(defun output-to-screen (x)
+  (write-line x))
+(output-to-screen (format nil "~A" (euler)))

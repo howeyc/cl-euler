@@ -1,0 +1,13 @@
+#!/usr/local/bin/sbcl --script
+(defun gen-fib-list (n)
+  (let ((lst (list 1 1)))
+    (do ((val (+ (first lst) (second lst)) (+ val (second lst) )))
+      ((>= val n) lst)
+      (push val lst))))
+(defun gen-even-fib-list (n)
+  (remove-if #'oddp (gen-fib-list n)))
+(defun euler ()
+  (apply #'+ (gen-even-fib-list 4000000)))
+(defun output-to-screen (x)
+  (write-line x))
+(output-to-screen (format nil "~a" (euler)))

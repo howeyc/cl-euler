@@ -1,0 +1,15 @@
+#!/usr/local/bin/sbcl --script
+(defun mod3-or-mod5 (x)
+ (or 
+  (eql (mod x 3) 0)
+  (eql (mod x 5) 0)))
+(defun make-mod-list ()
+  (let ((lst nil))
+    (do ((i 0 (+ i 1)))
+      ((>= i 1000) lst)
+      (if (mod3-or-mod5 i) (push i lst)))))
+(defun euler ()
+ (apply #'+ (make-mod-list)))
+(defun output-to-screen (x)
+ (write-line x))
+(output-to-screen (format nil "~a" (euler)))
