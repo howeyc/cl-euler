@@ -15,7 +15,7 @@
             (eql (mod n i) 0))
         (push i lst)))))
 (defun euler ()
-  (gen-prime-factor-list 600851475143))
+  (first (gen-prime-factor-list 600851475143)))
 (defun output-to-screen (x)
   (write-line x))
 (output-to-screen (format nil "~a" (euler)))

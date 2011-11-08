@@ -2,7 +2,7 @@
 (defun primep (num)
   (do ((div 2 (+ div 1)))
     ((> div (sqrt num)) t)
-    (if (eql (mod num div) 0) (return nil))))
+    (if (zerop (mod num div)) (return nil))))
 (defun gen-prime-list (n)
   (let ((lst nil))
     (do ((i 2 (+ 1 i)))
