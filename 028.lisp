@@ -1,17 +1,14 @@
-(defun generate-corners(index)
-  (let ((lst nil) (decval (* 2 index)) (maxcorner (* (+ index (+ index 1)) (+ index (+ index 1)))))
-    (if (= index 0)
-      (list 1)
-      (progn
-        (push maxcorner lst)
-        (push (- (first lst) decval) lst)
-        (push (- (first lst) decval) lst)
-        (push (- (first lst) decval) lst)
-        lst))))
-(defun generate-all-corners (dimension)
-  (let ((lst (generate-corners 0)))
-    (do ((i 1 (+ 1 i)))
-      ((= (first lst) (* dimension dimension)) lst)
-      (setf lst (append (reverse (generate-corners i)) lst)))))
+;; The Four corners:
+;; n2 - 1(n - 1)     n2
+;; n2 - 2(n - 1)     n2 - 3(n-1)
+;; Total:
+;; 4n2 - 6n + 6
+(defun corner-total (dimension)
+  (if (= dimension 1)
+    1
+    (+ (* 4 (* dimension dimension)) (* -6 dimension) 6)))
+(defun all-corner-total (limit)
+  (loop for n from 1 to limit by 2 
+        sum (corner-total n)))
 (defun euler-28 ()
-  (apply #'+ (generate-all-corners 1001)))
+  (all-corner-total 1001))
